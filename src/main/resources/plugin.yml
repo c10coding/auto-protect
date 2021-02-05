@@ -1,6 +1,6 @@
 name: AutoProtect
 version: ${project.version}
-main: net.dohaw.autoprotect.AutoProtect
+main: net.dohaw.autoprotect.AutoProtectPlugin
 api-version: 1.16
 
 commands:
