@@ -41,7 +41,7 @@ public class WandUtils {
 
         List<String> wandLore = new ArrayList<>();
         wandLore.add("Use this sort of like a world-edit wand");
-        wandLore.add("Choose the areas you want to automatically be re-generated");
+        wandLore.add("Choose the areas you want to automatically be regenerated");
         wandMeta.setLore(wandLore);
         wand.setItemMeta(wandMeta);
         ItemStackHelper.addGlowToItem(wand);

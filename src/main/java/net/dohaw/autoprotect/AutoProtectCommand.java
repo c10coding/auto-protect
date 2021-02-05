@@ -29,7 +29,7 @@ public class AutoProtectCommand implements CommandExecutor {
                 pSender.getInventory().addItem(WandUtils.getApWand());
                 ChatSender.sendPlayerMessage("You have been given the AutoProtect wand!", true, sender, AutoProtectPlugin.PREFIX);
                 ChatSender.sendPlayerMessage("Right-click and left-click blocks to define different points for your area!", true, sender, AutoProtectPlugin.PREFIX);
-            }else if(args[0].equalsIgnoreCase("define") && args.length == 2){
+            }else if(args[0].equalsIgnoreCase("define") && args.length == 2 && pSender.hasPermission("ap.wand")){
 
                 if(plugin.getSessions().containsKey(pSender.getUniqueId())){
 
@@ -65,7 +65,7 @@ public class AutoProtectCommand implements CommandExecutor {
     }
 
     private void sendHelp(Player playerToSendTo){
-        ChatSender.sendPlayerMessage("Commands for this AutoProtect:", true, playerToSendTo, AutoProtectPlugin.PREFIX);
+        ChatSender.sendPlayerMessage("Commands for this plugin:", true, playerToSendTo, AutoProtectPlugin.PREFIX);
         ChatSender.sendPlayerMessage("&6/aup wand &f- Gives you the AutoProtect wand so you can define areas", true, playerToSendTo, AutoProtectPlugin.PREFIX);
         ChatSender.sendPlayerMessage("&6/aup define <area name> &f- Defines a new AutoProtect area", true, playerToSendTo, AutoProtectPlugin.PREFIX);
     }

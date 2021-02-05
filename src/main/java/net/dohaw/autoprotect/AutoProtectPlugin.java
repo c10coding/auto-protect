@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Plugin made by Caleb / c10coding on github
+ * Description: Plugin that allows you define areas, and if blocks are broken in these areas, they are restored
+ * For: chcheesesauce on Fiverr
+ */
 public final class AutoProtectPlugin extends JavaPlugin {
 
     @Getter
