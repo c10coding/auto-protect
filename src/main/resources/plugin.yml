@@ -1,0 +1,19 @@
+name: AutoProtect
+version: ${project.version}
+main: net.dohaw.autoprotect.AutoProtect
+api-version: 1.16
+
+commands:
+  autoprotect:
+    description: "Base command for this plugin"
+    aliases:
+      - ap
+      - autop
+      - aup
+      - aprotect
+      - aprot
+
+permissions:
+  ap.wand:
+    default: op
+
