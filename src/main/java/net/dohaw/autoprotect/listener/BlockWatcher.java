@@ -49,7 +49,7 @@ public class BlockWatcher implements Listener {
                 Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     areaBlockBroken.getBlocksNeedRestoring().remove(BLOCK_LOCATION);
                     blockBroken.setType(BLOCK_MAT);
-                }, baseConfig.getBlockRestoreInterval() * 20);
+                }, (long) (baseConfig.getBlockRestoreInterval() * 60 * 20));
 
             }
 

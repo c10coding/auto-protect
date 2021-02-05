@@ -9,8 +9,8 @@ public class BaseConfig extends Config {
         super(plugin, "config.yml");
     }
 
-    public int getBlockRestoreInterval(){
-        return config.getInt("Restore Block Interval");
+    public double getBlockRestoreInterval(){
+        return config.getDouble("Restore Block Interval", 1);
     }
 
 }

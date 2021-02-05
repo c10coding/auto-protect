@@ -2,6 +2,7 @@ package net.dohaw.autoprotect.utils;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang.math.IntRange;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,7 +22,9 @@ public class Area {
     private Map<Location, Material> blocksNeedRestoring = new HashMap<>();
 
     public boolean isBlockWithinArea(Block block){
-        return true;
+        return new IntRange(point1.getX(), point2.getX()).containsDouble(block.getX())
+                && new IntRange(point1.getY(), point2.getY()).containsDouble(block.getY())
+                &&  new IntRange(point1.getZ(), point2.getZ()).containsDouble(block.getZ());
     }
 
     public Area(Location point1, Location point2){

@@ -18,6 +18,7 @@ public class AreasConfig extends Config {
     public void saveArea(String name, Area area){
         config.set("Areas." + name + ".Point 1", area.getPoint1());
         config.set("Areas." + name + ".Point 2", area.getPoint2());
+        saveConfig();
     }
 
     public Map<String, Area> loadAreas(){

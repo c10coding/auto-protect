@@ -51,6 +51,8 @@ public class WandWatcher implements Listener {
                         session.setPoint1(locationClicked);
                     }
 
+                    sessions.put(player.getUniqueId(), session);
+
                 }
             }
         }
