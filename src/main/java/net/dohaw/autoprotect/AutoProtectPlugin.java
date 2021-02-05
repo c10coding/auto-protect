@@ -15,9 +15,12 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Plugin made by Caleb / c10coding on github
+ * Author: c10coding on Github
  * Description: Plugin that allows you define areas, and if blocks are broken in these areas, they are restored
+ * Date Started: 2/5/2021
+ * Date Finished: 2/5/2021
  * For: chcheesesauce on Fiverr
+ * Hello future person :)
  */
 public final class AutoProtectPlugin extends JavaPlugin {
 
