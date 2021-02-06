@@ -3,6 +3,8 @@ package net.dohaw.autoprotect;
 import lombok.Getter;
 import net.dohaw.autoprotect.config.AreasConfig;
 import net.dohaw.autoprotect.utils.Area;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.Map;
@@ -40,6 +42,8 @@ public class AreaManager {
             String key = entry.getKey();
             Area area = entry.getValue();
             areasConfig.saveArea(key, area);
+            Map<Location, Material> blocksNeedRestoring = area.getBlocksNeedRestoring();
+            blocksNeedRestoring.forEach((l, m) -> l.getBlock().setType(m));
         }
     }
 
