@@ -13,4 +13,12 @@ public class BaseConfig extends Config {
         return config.getDouble("Restore Block Interval", 1);
     }
 
+    public String getCantBreakMessage(){
+        return config.getString("Cant Break Message");
+    }
+
+    public String getCantBuildMessage(){
+        return config.getString("Cant Build Message");
+    }
+
 }

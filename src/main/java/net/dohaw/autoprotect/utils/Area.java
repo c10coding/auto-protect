@@ -18,6 +18,9 @@ public class Area {
     @Getter @Setter
     private Location point2;
 
+    @Getter @Setter
+    private boolean canBuild, canBreak, willRestoreOnBreak, willRestoreOnBuild;
+
     @Getter
     private Map<Location, Material> blocksNeedRestoring = new HashMap<>();
 

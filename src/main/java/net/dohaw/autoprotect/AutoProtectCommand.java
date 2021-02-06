@@ -29,31 +29,39 @@ public class AutoProtectCommand implements CommandExecutor {
                 pSender.getInventory().addItem(WandUtils.getApWand());
                 ChatSender.sendPlayerMessage("You have been given the AutoProtect wand!", true, sender, AutoProtectPlugin.PREFIX);
                 ChatSender.sendPlayerMessage("Right-click and left-click blocks to define different points for your area!", true, sender, AutoProtectPlugin.PREFIX);
-            }else if(args[0].equalsIgnoreCase("define") && args.length == 2 && pSender.hasPermission("ap.wand")){
+            }else if(args[0].equalsIgnoreCase("define") && args.length == 2 && pSender.hasPermission("ap.wand")) {
 
-                if(plugin.getSessions().containsKey(pSender.getUniqueId())){
+                if (plugin.getSessions().containsKey(pSender.getUniqueId())) {
 
                     Map<UUID, Area> sessions = plugin.getSessions();
                     Area session = sessions.get(pSender.getUniqueId());
-                    if(session.getPoint1() != null && session.getPoint2() != null){
+                    if (session.getPoint1() != null && session.getPoint2() != null) {
 
                         String areaName = args[1];
-                        if(!areaManager.isDuplicateAreaName(areaName)){
+
+                        if (!areaManager.isDuplicateAreaName(areaName)) {
                             sessions.remove(pSender.getUniqueId());
                             areaManager.addNewArea(areaName, session);
                             ChatSender.sendPlayerMessage("You have defined a new area!", true, pSender, AutoProtectPlugin.PREFIX);
-                        }else{
+                        } else {
                             ChatSender.sendPlayerMessage("This is already a area name! Please choose another one...", true, pSender, AutoProtectPlugin.PREFIX);
                         }
 
-                    }else{
+                    } else {
                         ChatSender.sendPlayerMessage("One of your points haven't been set! Please set both points to define an area...", true, pSender, AutoProtectPlugin.PREFIX);
                         return false;
                     }
 
-                }else{
+                } else {
                     ChatSender.sendPlayerMessage("You aren't defining a session at the moment. Set 2 points for your area and then use this command!", true, sender, AutoProtectPlugin.PREFIX);
                 }
+            }else if(args[0].equalsIgnoreCase("reload") && pSender.hasPermission("ap.wand")){
+
+                plugin.getBaseConfig().reloadConfig();
+                plugin.loadBaseConfigValues();
+                plugin.getAreasConfig().reloadConfig();
+                plugin.getAreaManager().load(plugin);
+                ChatSender.sendPlayerMessage("All AutoProtect configs have been reloaded!", true, pSender, AutoProtectPlugin.PREFIX);
 
             }else{
                 sendHelp(pSender);
@@ -67,7 +75,7 @@ public class AutoProtectCommand implements CommandExecutor {
     private void sendHelp(Player playerToSendTo){
         ChatSender.sendPlayerMessage("Commands for this plugin:", true, playerToSendTo, AutoProtectPlugin.PREFIX);
         ChatSender.sendPlayerMessage("&6/aup wand &f- Gives you the AutoProtect wand so you can define areas", true, playerToSendTo, AutoProtectPlugin.PREFIX);
-        ChatSender.sendPlayerMessage("&6/aup define <area name> &f- Defines a new AutoProtect area", true, playerToSendTo, AutoProtectPlugin.PREFIX);
+        ChatSender.sendPlayerMessage("&6/aup define <area name> <whether they can build> <whether they can break> &f- Defines a new AutoProtect area", true, playerToSendTo, AutoProtectPlugin.PREFIX);
     }
 
 }

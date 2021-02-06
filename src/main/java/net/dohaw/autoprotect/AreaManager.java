@@ -15,36 +15,35 @@ public class AreaManager {
     @Getter private Map<String, Area> areas;
 
     public AreaManager(AutoProtectPlugin plugin){
-        this.areasConfig = plugin.getAreasConfig();
-        this.areas = areasConfig.loadAreas();
+        load(plugin);
     }
 
-    public Area getAreaBlockBroken(Block blockBroken){
+    public Area getAreaBlockBroken(Block block){
         for(Map.Entry<String, Area> entry : areas.entrySet()){
             Area area = entry.getValue();
-            if(entry.getValue().isBlockWithinArea(blockBroken)){
+            if(entry.getValue().isBlockWithinArea(block)){
                 return area;
             }
         }
         return null;
     }
 
+    public void load(AutoProtectPlugin plugin){
+         this.areasConfig = plugin.getAreasConfig();
+         this.areas = areasConfig.loadAreas();
+    }
+
     public void addNewArea(String areaName, Area area){
+        area.setCanBuild(false);
+        area.setCanBreak(false);
+        area.setWillRestoreOnBreak(true);
+        area.setWillRestoreOnBuild(true);
         areas.put(areaName, area);
+        areasConfig.saveArea(areaName, area);
     }
 
     public boolean isDuplicateAreaName(String areaName){
         return areas.containsKey(areaName);
-    }
-
-    public void saveAreas(){
-        for(Map.Entry<String, Area> entry : areas.entrySet()){
-            String key = entry.getKey();
-            Area area = entry.getValue();
-            areasConfig.saveArea(key, area);
-            Map<Location, Material> blocksNeedRestoring = area.getBlocksNeedRestoring();
-            blocksNeedRestoring.forEach((l, m) -> l.getBlock().setType(m));
-        }
     }
 
 }
