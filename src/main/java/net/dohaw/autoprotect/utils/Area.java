@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Area {
 
@@ -21,6 +22,9 @@ public class Area {
     @Getter @Setter
     private boolean canBuild, canBreak, willRestoreOnBreak, willRestoreOnBuild;
 
+    @Getter @Setter
+    private UUID owner;
+
     @Getter
     private Map<Location, Material> blocksNeedRestoring = new HashMap<>();
 
@@ -30,9 +34,10 @@ public class Area {
                 &&  new IntRange(point1.getZ(), point2.getZ()).containsDouble(block.getZ());
     }
 
-    public Area(Location point1, Location point2){
+    public Area(UUID owner, Location point1, Location point2){
         this.point1 = point1;
         this.point2 = point2;
+        this.owner = owner;
     }
 
 }

@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AreasConfig extends Config {
 
@@ -22,10 +23,12 @@ public class AreasConfig extends Config {
         config.set("Areas." + name + ".Can Build", area.isCanBuild());
         config.set("Areas." + name + ".Will Restore On Build", area.isWillRestoreOnBuild());
         config.set("Areas." + name + ".Will Restore On Break", area.isWillRestoreOnBreak());
+        config.set("Areas." + name + ".Owner", area.getOwner().toString());
         saveConfig();
     }
 
     public Map<String, Area> loadAreas(){
+
         Map<String, Area> areas = new HashMap<>();
         ConfigurationSection section = config.getConfigurationSection("Areas");
         if(section != null){
@@ -33,7 +36,14 @@ public class AreasConfig extends Config {
 
                 Location point1 = section.getLocation(key + ".Point 1");
                 Location point2 = section.getLocation(key + ".Point 2");
-                Area area = new Area(point1, point2);
+                String uuidStr = section.getString(key + ".Owner");
+
+                Area area;
+                if(uuidStr != null){
+                    area = new Area(UUID.fromString(uuidStr), point1, point2);
+                }else{
+                    area = new Area(null, point1, point2);
+                }
 
                 boolean canBreak = section.getBoolean(key + ".Can Break");
                 boolean canBuild = section.getBoolean(key + ".Can Build");
@@ -51,12 +61,6 @@ public class AreasConfig extends Config {
             plugin.getLogger().warning("The areas section in areas.yml is either empty or has been removed entirely from the configuration file. This is normally not something to worry about...");
         }
         return areas;
-    }
-
-    public Area getArea(String name){
-        Location point1 = config.getLocation("Areas." + name + ".Point 1");
-        Location point2 = config.getLocation("Areas." + name + ".Point 2");
-        return new Area(point1, point2);
     }
 
 }

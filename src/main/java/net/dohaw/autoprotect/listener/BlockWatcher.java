@@ -41,7 +41,7 @@ public class BlockWatcher implements Listener {
             Area areaBlockBroken = areaManager.getAreaBlockBroken(blockBroken);
             if(areaBlockBroken != null){
 
-                if(areaBlockBroken.isCanBreak()){
+                if(areaBlockBroken.isCanBreak() || areaBlockBroken.getOwner().equals(e.getPlayer().getUniqueId())){
 
                     if(areaBlockBroken.isWillRestoreOnBreak()){
 
@@ -77,7 +77,7 @@ public class BlockWatcher implements Listener {
             Area areaBlockBroken = areaManager.getAreaBlockBroken(blockPlaced);
             if(areaBlockBroken != null){
 
-                if(areaBlockBroken.isCanBuild()){
+                if(areaBlockBroken.isCanBuild() || areaBlockBroken.getOwner().equals(e.getPlayer().getUniqueId())){
 
                     if(areaBlockBroken.isWillRestoreOnBuild()){
 

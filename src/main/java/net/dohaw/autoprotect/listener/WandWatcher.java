@@ -38,7 +38,7 @@ public class WandWatcher implements Listener {
                     if(sessions.containsKey(player.getUniqueId())){
                         session = sessions.get(player.getUniqueId());
                     }else{
-                        session = new Area(null, null);
+                        session = new Area(player.getUniqueId(), null, null);
                     }
 
                     // Can't be NPE because getClickedBlock has to be a block, based on the already checked action above (RIGHT_CLICK_BLOCK and LEFT_CLICK_BLOCK)

@@ -75,7 +75,7 @@ public class AutoProtectCommand implements CommandExecutor {
     private void sendHelp(Player playerToSendTo){
         ChatSender.sendPlayerMessage("Commands for this plugin:", true, playerToSendTo, AutoProtectPlugin.PREFIX);
         ChatSender.sendPlayerMessage("&6/aup wand &f- Gives you the AutoProtect wand so you can define areas", true, playerToSendTo, AutoProtectPlugin.PREFIX);
-        ChatSender.sendPlayerMessage("&6/aup define <area name> <whether they can build> <whether they can break> &f- Defines a new AutoProtect area", true, playerToSendTo, AutoProtectPlugin.PREFIX);
+        ChatSender.sendPlayerMessage("&6/aup define <area name> &f- Defines a new AutoProtect area", true, playerToSendTo, AutoProtectPlugin.PREFIX);
     }
 
 }
